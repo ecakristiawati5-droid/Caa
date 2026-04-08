@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #ffe4ec;
+    margin: 0;
+}
+
+.header {
+    background: #ff4da6;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+.container {
+    padding: 15px;
+}
+
+.box {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+button {
+    width: 100%;
+    background: #ff4da6;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">Checkout</div>
+
+<div class="container">
+<div class="box">
+
+<h3>🛒 Pesanan Kamu:</h3>
+<ul id="list"></ul>
+
+<h3>Data Pembeli</h3>
+<input type="text" id="nama" placeholder="Nama">
+<input type="text" id="alamat" placeholder="Alamat">
+
+<br><br>
+<button onclick="checkout()">Checkout Sekarang</button>
+
+</div>
+</div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+let list = document.getElementById("list");
+cart.forEach(item=>{
+    let li = document.createElement("li");
+    li.innerText = item;
+    list.appendChild(li);
+});
+
+function checkout(){
+    let nama = document.getElementById("nama").value;
+    let alamat = document.getElementById("alamat").value;
+
+    if(nama=="" || alamat==""){
+        alert("Isi data dulu!");
+    } else {
+        alert("Pesanan atas nama "+nama+" berhasil!");
+        localStorage.removeItem("cart");
+    }
+}
+</script>
+
+</body>
+</html>
